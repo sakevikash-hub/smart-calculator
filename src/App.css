@@ -1,0 +1,773 @@
+/* =========================================
+   MAIN APP
+========================================= */
+
+.app {
+  min-height: 100vh;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  padding: 30px;
+
+  background:
+    radial-gradient(
+      circle at 10% 10%,
+      rgba(37, 99, 235, 0.15),
+      transparent 30%
+    ),
+
+    radial-gradient(
+      circle at 90% 90%,
+      rgba(239, 68, 68, 0.12),
+      transparent 30%
+    ),
+
+    #f4f7fc;
+
+  outline: none;
+}
+
+
+/* =========================================
+   MAIN CONTAINER
+========================================= */
+
+.calculator-container {
+  width: 900px;
+
+  max-width: 100%;
+
+  padding: 30px;
+
+  background: rgba(255, 255, 255, 0.9);
+
+  border: 1px solid rgba(37, 99, 235, 0.12);
+
+  border-radius: 32px;
+
+  box-shadow:
+    0 30px 70px rgba(15, 55, 110, 0.15),
+
+    0 5px 15px rgba(0, 0, 0, 0.05);
+
+  backdrop-filter: blur(20px);
+
+  animation: containerAppear 0.7s ease;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header {
+  display: flex;
+
+  align-items: center;
+
+  gap: 15px;
+
+  margin-bottom: 25px;
+}
+
+
+.header-icon {
+  width: 55px;
+
+  height: 55px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border-radius: 17px;
+
+  background: #1769ff;
+
+  color: white;
+
+  font-size: 23px;
+
+  box-shadow:
+    0 10px 25px rgba(23, 105, 255, 0.3);
+
+  animation: iconFloat 3s ease-in-out infinite;
+}
+
+
+.header h1 {
+  color: #123b72;
+
+  font-size: 29px;
+
+  margin: 0;
+}
+
+
+.header p {
+  color: #7b8798;
+
+  font-size: 14px;
+
+  margin-top: 3px;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+========================================= */
+
+.main-content {
+  display: grid;
+
+  grid-template-columns: 1fr 0.75fr;
+
+  gap: 25px;
+
+  align-items: start;
+}
+
+
+/* =========================================
+   CALCULATOR CARD
+========================================= */
+
+.calculator-card {
+  padding: 22px;
+
+  background: #ffffff;
+
+  border-radius: 25px;
+
+  box-shadow:
+    0 12px 30px rgba(15, 55, 110, 0.08);
+}
+
+
+/* =========================================
+   DISPLAY
+========================================= */
+
+.display {
+  min-height: 140px;
+
+  padding: 23px;
+
+  margin-bottom: 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: flex-end;
+
+  align-items: flex-end;
+
+  border-radius: 21px;
+
+  background:
+    linear-gradient(
+      145deg,
+      #123b72,
+      #1769ff
+    );
+
+  color: white;
+
+  overflow: hidden;
+
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+
+    0 12px 25px rgba(23, 105, 255, 0.2);
+
+  transition: 0.3s ease;
+}
+
+
+.display-error {
+  background:
+    linear-gradient(
+      145deg,
+      #991b1b,
+      #ef4444
+    );
+
+  animation: shake 0.35s ease;
+}
+
+
+.expression {
+  width: 100%;
+
+  min-height: 25px;
+
+  text-align: right;
+
+  color: #c7dcff;
+
+  font-size: 15px;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+
+.result {
+  max-width: 100%;
+
+  margin-top: 8px;
+
+  font-size: 43px;
+
+  font-weight: 700;
+
+  word-break: break-all;
+
+  animation: resultPop 0.25s ease;
+}
+
+
+/* =========================================
+   BUTTON GRID
+========================================= */
+
+.buttons {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 11px;
+}
+
+
+/* =========================================
+   BUTTON
+========================================= */
+
+.button {
+  height: 62px;
+
+  border: none;
+
+  border-radius: 17px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  background: #f8faff;
+
+  color: #173b6d;
+
+  font-size: 20px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 12px rgba(23, 59, 109, 0.07);
+
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+}
+
+
+/* =========================================
+   BUTTON HOVER
+========================================= */
+
+.button:hover {
+  transform: translateY(-4px);
+
+  background: #eef4ff;
+
+  box-shadow:
+    0 10px 20px rgba(23, 59, 109, 0.13);
+}
+
+
+/* =========================================
+   BUTTON CLICK ANIMATION
+========================================= */
+
+.button:active {
+  transform: scale(0.9);
+
+  box-shadow:
+    0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+/* =========================================
+   OPERATOR
+========================================= */
+
+.operator {
+  background: #1769ff;
+
+  color: white;
+
+  box-shadow:
+    0 8px 18px rgba(23, 105, 255, 0.25);
+}
+
+
+.operator:hover {
+  background: #0757df;
+
+  color: white;
+}
+
+
+/* =========================================
+   EQUALS
+========================================= */
+
+.equals {
+  background:
+    linear-gradient(
+      135deg,
+      #1769ff,
+      #0d4fd6
+    );
+
+  color: white;
+
+  box-shadow:
+    0 8px 20px rgba(23, 105, 255, 0.3);
+}
+
+
+.equals:hover {
+  background:
+    linear-gradient(
+      135deg,
+      #0757df,
+      #003fa8
+    );
+}
+
+
+/* =========================================
+   RED
+========================================= */
+
+.danger {
+  background: #ef4444;
+
+  color: white;
+
+  box-shadow:
+    0 8px 18px rgba(239, 68, 68, 0.2);
+}
+
+
+.danger:hover {
+  background: #dc2626;
+
+  color: white;
+}
+
+
+/* =========================================
+   SECONDARY
+========================================= */
+
+.secondary {
+  background: #eaf1ff;
+
+  color: #1769ff;
+}
+
+
+.secondary:hover {
+  background: #dce8ff;
+
+  color: #0757df;
+}
+
+
+/* =========================================
+   ZERO
+========================================= */
+
+.zero {
+  grid-column: span 2;
+}
+
+
+/* =========================================
+   HISTORY CARD
+========================================= */
+
+.history-card {
+  min-height: 400px;
+
+  padding: 22px;
+
+  background: #ffffff;
+
+  border-radius: 25px;
+
+  box-shadow:
+    0 12px 30px rgba(15, 55, 110, 0.08);
+
+  overflow: hidden;
+}
+
+
+/* =========================================
+   HISTORY HEADER
+========================================= */
+
+.history-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding-bottom: 17px;
+
+  border-bottom: 1px solid #edf1f7;
+}
+
+
+.history-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  color: #1769ff;
+}
+
+
+.history-title h2 {
+  font-size: 18px;
+
+  color: #123b72;
+}
+
+
+.history-header > span {
+  min-width: 27px;
+
+  height: 27px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  border-radius: 50%;
+
+  background: #eaf1ff;
+
+  color: #1769ff;
+
+  font-size: 12px;
+
+  font-weight: bold;
+}
+
+
+/* =========================================
+   HISTORY CONTENT
+========================================= */
+
+.history-content {
+  max-height: 390px;
+
+  overflow-y: auto;
+
+  padding-top: 10px;
+}
+
+
+/* =========================================
+   EMPTY HISTORY
+========================================= */
+
+.empty-history {
+  min-height: 300px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+  color: #9aa5b5;
+}
+
+
+.empty-history svg {
+  font-size: 35px;
+
+  margin-bottom: 12px;
+
+  color: #b9c9e8;
+}
+
+
+.empty-history p {
+  color: #637083;
+
+  font-weight: 600;
+}
+
+
+.empty-history small {
+  margin-top: 5px;
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   HISTORY ITEM
+========================================= */
+
+.history-item {
+  padding: 13px;
+
+  margin-bottom: 9px;
+
+  border-radius: 14px;
+
+  background: #f7f9fd;
+
+  border-left: 3px solid #1769ff;
+
+  animation: historySlide 0.3s ease;
+
+  transition: 0.2s ease;
+}
+
+
+.history-item:hover {
+  transform: translateX(4px);
+
+  background: #eef4ff;
+}
+
+
+.history-expression {
+  color: #7a8799;
+
+  font-size: 13px;
+
+  margin-bottom: 4px;
+}
+
+
+.history-item strong {
+  color: #123b72;
+
+  font-size: 17px;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+.footer {
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-top: 22px;
+
+  color: #9aa5b5;
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes containerAppear {
+
+  from {
+    opacity: 0;
+
+    transform: translateY(25px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateY(0) scale(1);
+  }
+
+}
+
+
+@keyframes resultPop {
+
+  from {
+    opacity: 0;
+
+    transform: scale(0.8);
+
+  }
+
+  to {
+    opacity: 1;
+
+    transform: scale(1);
+
+  }
+
+}
+
+
+@keyframes iconFloat {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-4px);
+  }
+
+}
+
+
+@keyframes historySlide {
+
+  from {
+    opacity: 0;
+
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+
+    transform: translateX(0);
+  }
+
+}
+
+
+@keyframes shake {
+
+  0% {
+    transform: translateX(0);
+  }
+
+  25% {
+    transform: translateX(-6px);
+  }
+
+  50% {
+    transform: translateX(6px);
+  }
+
+  75% {
+    transform: translateX(-4px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+
+}
+
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+@media (max-width: 750px) {
+
+  .main-content {
+    grid-template-columns: 1fr;
+  }
+
+  .history-card {
+    min-height: 250px;
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .app {
+    padding: 12px;
+  }
+
+  .calculator-container {
+    padding: 17px;
+
+    border-radius: 25px;
+  }
+
+  .calculator-card {
+    padding: 15px;
+  }
+
+  .header h1 {
+    font-size: 24px;
+  }
+
+  .header-icon {
+    width: 48px;
+
+    height: 48px;
+
+    font-size: 20px;
+  }
+
+  .button {
+    height: 55px;
+
+    border-radius: 14px;
+
+    font-size: 18px;
+  }
+
+  .display {
+    min-height: 120px;
+
+    padding: 18px;
+  }
+
+  .result {
+    font-size: 34px;
+  }
+
+}
